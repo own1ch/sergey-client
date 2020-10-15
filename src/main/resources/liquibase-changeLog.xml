@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="v.eremin" id="create-table-client">
+        <sql>
+            create table client(
+                id UUID primary key,
+                name varchar(256)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="alter-table-client" author="v.eremin">
+        <sql>
+            alter table client add column surname varchar(256);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
