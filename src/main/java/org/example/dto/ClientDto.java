@@ -1,6 +1,7 @@
 package org.example.dto;
 
 public class ClientDto {
+
 	private String name;
 	private String surname;
 
