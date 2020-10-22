@@ -48,7 +48,7 @@ public class ClientController {
     }
 
     @PutMapping
-    public Client update(@RequestBody IdDto idDto) {
+    public Client update(@RequestBody UUID idDto) {
         //clientService.save()
         return null;
     }
