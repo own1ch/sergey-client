@@ -5,6 +5,7 @@ import org.example.dto.ClientDto;
 import org.example.dto.IdDto;
 import org.example.entity.Client;
 import org.example.repository.ClientRepo;
+import org.example.repository.ClientRepositoryImpl;
 import org.example.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,6 +19,9 @@ import java.util.UUID;
 
 @RestController
 public class ClientController {
+
+    @Autowired
+    private ClientRepositoryImpl sd;
     @Autowired
     private ClientService clientService;
 
