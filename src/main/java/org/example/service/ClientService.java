@@ -6,10 +6,8 @@ import org.example.repository.ClientRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -31,8 +29,8 @@ public class ClientService {
 
 		return clientRepository.saveClients(clients);
 	}
-	public Client mindById(UUID id) {
-		return clientRepository.mindById(id);
+	public Client getById(UUID id) {
+		return clientRepository.getById(id);
 	}
 
 	public void delete(Client client) {

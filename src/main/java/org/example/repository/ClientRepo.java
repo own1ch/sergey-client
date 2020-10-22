@@ -10,5 +10,4 @@ import java.util.UUID;
 @Repository
 public interface ClientRepo extends CrudRepository<Client, UUID> {
     List<Client> findAll();
-    Client mindById(UUID id);
 }

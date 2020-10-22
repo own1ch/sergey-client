@@ -27,7 +27,7 @@ public class ClientRepositoryImpl {
 		}
 		return result;
 	}
-	public Client mindById(UUID id) {
+	public Client getById(UUID id) {
 		List<Client> clients = clientRepository.findAll();
 		for (Client client : clients) {
 			if (client.getId().equals(id)) {

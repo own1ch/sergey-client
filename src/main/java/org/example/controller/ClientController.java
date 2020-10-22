@@ -2,10 +2,12 @@ package org.example.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.dto.ClientDto;
+import org.example.dto.IdDto;
 import org.example.entity.Client;
 import org.example.repository.ClientRepo;
 import org.example.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Id;
@@ -16,54 +18,78 @@ import java.util.UUID;
 
 @RestController
 public class ClientController {
-	@Autowired
-	private ClientService clientService;
+    @Autowired
+    private ClientService clientService;
 
-	@Autowired
-	private ObjectMapper objectMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
 
-	private ClientRepo clientRepository;
+    private ClientRepo clientRepository;
 
-	@Autowired
-	public void setClientRepository(ClientRepo clientRepository) {
-		this.clientRepository = clientRepository;
-	}
-
-
-	@PostMapping(value = "/clients")
-	public List<Client> saveClients(@RequestBody List<ClientDto> dtos) {
-		return clientService.saveClients(dtos);
-	}
-
-	@PostMapping(value = "/save")
-	public Client save(@RequestBody Client client) {
-		return clientService.save(client);
-	}
-
-	@PostMapping(value = "/delete")
-	public void delete(@RequestBody Client client) {
-		clientService.delete(client);
-	}
-
-	@PostMapping(value = "/id")
-	public Client mindById(@RequestParam(value = "id", required = false) UUID id) {
-		return clientService.mindById(id);
-	}
+    @Autowired
+    public void setClientRepository(ClientRepo clientRepository) {
+        this.clientRepository = clientRepository;
+    }
 
 
-	@GetMapping("delete")
-	public void deleteAll() {
-		clientService.deleteAll();
-	}
+    @PostMapping(value = "/clients")
+    public List<Client> saveClients(@RequestBody List<ClientDto> dtos) {
+        return clientService.saveClients(dtos);
+    }
 
-	@GetMapping("get")
-	public List<Client> findAll() {
-		return clientService.findAll();
-	}
+    @PostMapping
+    public Client save(@RequestBody Client client) {
+        return clientService.save(client);
+    }
 
-	@GetMapping("count")
-	public long count() {
-		return clientService.count();
-	}
+    @DeleteMapping
+    public void delete(@RequestBody List<UUID> ids) {
+        //clientService.delete(client);
+    }
+
+    @PutMapping
+    public Client update(@RequestBody IdDto idDto) {
+        //clientService.save()
+        return null;
+    }
+
+
+
+//	@PostMapping(value = "/{id}")
+//	public Client getById(@PathVariable(value = "id") UUID id) {
+//		return clientService.getById(id);
+//	}
+
+    @GetMapping(value = "")
+    public String getById(@RequestParam UUID id, @RequestParam(name = "surname") String[] surname) {
+        //return clientService.getById(id);
+        return id + " " + surname[0];
+    }
+
+    @GetMapping(value = "/{id}")
+    @ResponseBody
+    public String getEmployeesById(@PathVariable UUID id) {
+        return "ID: " + id;
+    }
+
+    @PostMapping(value = "zalupa", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Client getById(@RequestBody UUID id) {
+        return clientService.getById(id);
+    }
+
+    @DeleteMapping("delete")
+    public void deleteAll() {
+        clientService.deleteAll();
+    }
+
+    @GetMapping("get")
+    public List<Client> findAll() {
+        return clientService.findAll();
+    }
+
+    @GetMapping("count")
+    public long count() {
+        return clientService.count();
+    }
 
 }
