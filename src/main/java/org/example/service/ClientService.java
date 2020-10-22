@@ -29,4 +29,28 @@ public class ClientService {
 
 		return clientRepository.saveClients(clients);
 	}
+	public Client getById(UUID id) {
+		return clientRepository.getById(id);
+	}
+
+	public void delete(Client client) {
+		clientRepository.delete(client);
+	}
+
+	public Client save(Client client) {
+		return clientRepository.save(client);
+	}
+
+
+	public List<Client> findAll() {
+		return clientRepository.findAll();
+	}
+
+	public void deleteAll() {
+		clientRepository.deleteAll();
+	}
+
+	public long count() {
+		return clientRepository.count();
+	}
 }
